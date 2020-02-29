@@ -1,0 +1,35 @@
+/* eslint-disable no-unused-vars */
+import React from 'react';
+import './app.scss';
+import Header from './header/header.js';
+import Form from './form/form.js';
+import Results from './results/results.js';
+import Footer from './footer/footer.js';
+import Hisrory from './history/history.js';
+import {Route} from 'react-router-dom';
+
+
+class App extends React.Component{
+  constructor (props){
+    super(props);
+    this.state = {};
+  }
+  updateState = data =>{
+    let Headers = {'Content-Type': 'application/json'};
+    this.setState({Headers, Response:{data}});
+  }
+  render(){
+    return(
+      <React.Fragment>
+        <Header />
+        <Route exact path='/'>
+          <Form update={this.updateState}/>
+          <Results  response={this.state}/>
+        </Route>
+        <Route exact path= '/history' render={()=><Hisrory/>}></Route>
+        <Footer />
+      </React.Fragment>
+    );
+  }
+}
+export default App;
