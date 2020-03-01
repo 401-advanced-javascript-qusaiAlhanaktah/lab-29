@@ -1,5 +1,5 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
-// import './resty.scss';
 
 import React from 'react';
 
@@ -15,6 +15,7 @@ class Form extends React.Component{
      e.preventDefault();
      let raw = await fetch(this.state.url);
      let APIdata = await raw.json();
+     this.props.apiList(this.state.url);
      this.props.update(APIdata);
    };
 
